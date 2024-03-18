@@ -1,0 +1,124 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Image Classification</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Image Classification</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="project_all.html" class="active">Projects</a></li>
+						<li><a href="index.html#two" >About Me</a></li>
+						<li><a href="index.html#three">Get in touch</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Mango Leaf Disease Classification Project</h1>
+							
+							<p><strong>Github Link:</strong> <a href="https://github.com/MetinUnlu/MangoLeafClassifier">github.com/MetinUnlu/MangoLeafClassifier</a></p>
+							<p>Project presentation file and codes can be found in github</p>
+							<p>This project aims to classify mango leaf diseases using a dataset from <a href="https://www.kaggle.com/datasets/warcoder/mango-leaf-disease-dataset">Kaggle</a>. Throughout the project, various deep learning models were explored to identify specific diseases affecting mango leaves, with a focus on achieving high accuracy and understanding model behavior in different scenarios.</p>
+							
+							<h2>Dataset</h2>
+							<p>The dataset comprises images of mango leaves, categorized by health status and disease type, sourced from Kaggle's Mango Leaf Disease Dataset.</p>
+							<span class="image fit"><img src="images/mangoleaf/imageset.png" alt="Imageset for classes"></span>
+
+							<h2>Notebooks Overview and Findings</h2>
+							
+							<h3>1. <code>main.ipynb</code></h3>
+							<p><strong>Description</strong>: Initializes the project's environment, including TensorFlow GPU configuration. Introduces a basic CNN model, achieving an accuracy of 0.85 on trial runs, serving as a baseline for the project.</p>
+							<p><strong>Contents</strong>: Environment setup, basic CNN model implementation, and trial run results.</p>
+							
+							<h3>2. <code>w_pretrained_model_EffecientNetB0.ipynb</code></h3>
+							<p><strong>Description</strong>: Implements EfficientNetB0, achieving near-perfect accuracy. However, compatibility issues with TensorFlow 2.10 and the EfficientNetB0 version led to errors.</p>
+							<p><strong>Contents</strong>: EfficientNetB0 setup and training, encountered errors.</p>
+							
+							<h3>3. <code>w_pretrained_model_MobileNetV2.ipynb</code></h3>
+							<p><strong>Description</strong>: Utilizes MobileNetV2 for the classification task. Despite the promise of transfer learning, the desired accuracy was not achieved.</p>
+							<p><strong>Contents</strong>: MobileNetV2 implementation, training process, and results analysis.</p>
+							
+							<h3>4. <code>w_pretrained_model_Xception.ipynb</code></h3>
+							<p><strong>Description</strong>: Finalizes the project with the Xception model, achieving exceptional accuracy. While slightly lower than EfficientNetB0's performance, it operated without errors and allowed model saving without issues.</p>
+							<p><strong>Contents</strong>: Xception model training, evaluation, and successful model saving.</p>
+							
+							<p>Additionally, for Xception, the batch size was dropped to 16 from 32. Otherwise the model could not execute training fully as the system run outs of memory, giving OOM error.</p>
+							<h2>With Xception, the achieved model accuracy: %98.75</h2>
+							<p>For Xcpetion pre-trained model, the confusion matrix for label classification provides insights into the model's performance.</p>
+							
+							<p><strong>Confusion Matrix Visualization</strong>:
+							<span class="image fit"><img src="images/mangoleaf/confusion_matrix.png" alt="Matrix Visual"></span>
+							<h2>Model Usage</h2>
+							<p>The trained model can be applied to new images using the <code>model_run.ipynb</code> notebook. This flexibility allows testing against images sourced online, demonstrating the model's real-world applicability. It's noteworthy that while predictions for healthy mango leaves remain accurate across environments, disease detection accuracy may vary for images dissimilar to the dataset's environment.</p>
+							<section>
+								<ul class="actions fit">
+									<li><a class="button fit">Neural Network</a></li>
+									<li><a class="button fit">Deep Learning</a></li>
+									<li><a class="button fit">Transfer Learning</a></li>
+									<li><a class="button fit">Image Classification</a></li>
+								</ul>
+							</section>
+							
+									
+							
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>
+							<h3>Email</h3>
+							<a href="metinunlu97@gmail.com">metinunlu97@gmail.com</a>
+						</li>
+						<li>
+							<h3>Phone</h3>
+							<span>+39 351 750 3392</span>
+						</li>
+						<li>
+							<h3>Social</h3>
+							<ul class="icons">
+								<!--<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>-->
+								<li><a href="https://github.com/MetinUnlu" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+								<!--<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>-->
+								<li><a href="https://www.linkedin.com/in/metinunlu/" class="icon brands fa-linkedin-in" target="_blank"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://www.facebook.com/MetinUnlu.knight/" class="icon brands fa-facebook-f" target="_blank"><span class="label">Facebook</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
