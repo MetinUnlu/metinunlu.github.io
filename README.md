@@ -2,15 +2,17 @@ Metin Ünlü
 
 Personal Portfolio Website.
 
-[Visit my GitHub profile](https://github.com/yourusername)
+Visit my Website: [metinunlu.github.io/](https://metinunlu.github.io/)
 
 Credits:
+
 	HTML5 Template:
 		html5up.net | @ajlkn
 
 
 	Demo Images:
 		Unsplash (unsplash.com)
+
 
 	Icons:
 		Font Awesome (fontawesome.io)
