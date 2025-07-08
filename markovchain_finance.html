@@ -1,0 +1,188 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Markov Chain Financial Prediction</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Markov Chain Financial Prediction</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="project_all.html" class="active">Projects</a></li>
+						<li><a href="index.html#two" >About Me</a></li>
+						<li><a href="index.html#three">Get in touch</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Markov Chain-Based Financial Prediction System</h1>
+							
+							<p><strong>Github Link:</strong> <a href="https://github.com/MetinUnlu/markovchain_finance">github.com/MetinUnlu/markovchain_finance</a></p>
+
+							<p>This project implements a comprehensive financial prediction system using Markov chains to model stock market behavior and make trading decisions. The system analyzes historical stock data, creates state-based models, and generates predictions for future price movements with threshold-based decision making.</p>
+
+							<h2>Project Overview</h2>
+							<p>The system utilizes <strong>Markov chains</strong> to model transition probabilities between different market states, calculate the expected value of each state, and predict outcomes. If the predicted value exceeds a predefined threshold, trading orders are executed. The project demonstrates both the potential and limitations of Markov chain applications in financial markets.</p>
+
+							<h2>Mathematical Foundation</h2>
+							<p>The core of this system is based on mathematical modeling of state transitions:</p>
+							<ul>
+								<li><strong>State Transition Probability:</strong> P<sub>ij</sub> = (Number of transitions from i to j) / (Total transitions from i)</li>
+								<li><strong>Expected Value Calculation:</strong> E(s<sub>i</sub>) = Σ P<sub>ij</sub> × V<sub>j</sub></li>
+								<li><strong>Threshold-Based Decision Making:</strong> Orders are placed when O(s<sub>i</sub>) > θ</li>
+							</ul>
+
+							<h2>Technical Implementation</h2>
+							<p>The system processes Google stock data spanning from 2004 to 2024, implementing several key components:</p>
+							
+							<h3>Technical Indicators</h3>
+							<ul>
+								<li><strong>Short-term EMA (14-day):</strong> Tracks recent price movements</li>
+								<li><strong>Long-term EMA (50-day):</strong> Reflects established price trends</li>
+								<li><strong>RSI (14-day):</strong> Identifies overbought/oversold conditions</li>
+								<li><strong>Close Gap:</strong> Percentage change in closing prices</li>
+							</ul>
+
+							<h3>State Creation and Pattern Recognition</h3>
+							<p>The system creates complex state patterns by combining:</p>
+							<ul>
+								<li>Short and Long EMA gap classifications (Low/Medium/High)</li>
+								<li>RSI signals (Overbought/Oversold/Normal)</li>
+								<li>Binary state determination based on price movement direction</li>
+							</ul>
+
+							<h2>Dataset and Preprocessing</h2>
+							<p>The project uses comprehensive Google stock data with the following features:</p>
+							<ul>
+								<li>Date, Open, High, Low, Close, Volume</li>
+								<li>Calculated technical indicators (EMA, RSI)</li>
+								<li>State patterns generated from indicator combinations</li>
+								<li>Transition matrices for state-to-state probability calculations</li>
+							</ul>
+
+							<h2>Results and Performance Analysis</h2>
+							<h3>Key Findings</h3>
+							<p>The system was tested on the last 10% of the dataset (validation period), revealing important insights:</p>
+							<ul>
+								<li><strong>Strategy Performance:</strong> Achieved 16% profit using threshold-based decisions</li>
+								<li><strong>Comparison with Buy-and-Hold:</strong> Simple buy-and-hold strategy yielded 58% profit over the same period</li>
+								<li><strong>Accuracy:</strong> The prediction model achieved 53% accuracy</li>
+								<li><strong>Threshold Impact:</strong> Without threshold (threshold=0), the system resulted in 92% loss</li>
+							</ul>
+
+							<h3>Honest Assessment</h3>
+							<p>While the Markov chain approach shows promise, this implementation demonstrates several limitations:</p>
+							<ul>
+								<li>The strategy underperformed compared to simple buy-and-hold</li>
+								<li>The model favored 'buy' predictions due to Google's general upward trend</li>
+								<li>False positives in trading decisions significantly impacted returns</li>
+								<li>The threshold mechanism improved performance but couldn't overcome fundamental limitations</li>
+							</ul>
+
+							<h2>Technologies and Tools</h2>
+							<ul>
+								<li><strong>Python:</strong> Primary programming language</li>
+								<li><strong>Pandas & NumPy:</strong> Data manipulation and numerical computations</li>
+								<li><strong>Matplotlib:</strong> Data visualization and result plotting</li>
+								<li><strong>Jupyter Notebook:</strong> Interactive development and analysis</li>
+								<li><strong>Technical Analysis Libraries:</strong> For calculating financial indicators</li>
+							</ul>
+
+							<h2>Key Insights and Lessons Learned</h2>
+							<p>This project provided valuable insights into both the potential and limitations of Markov chains in financial prediction:</p>
+							<ul>
+								<li><strong>State Design is Critical:</strong> The success of Markov chain methods heavily depends on creating meaningful states that capture market behavior</li>
+								<li><strong>Threshold Implementation:</strong> Risk management through thresholds is essential for practical trading applications</li>
+								<li><strong>Market Complexity:</strong> Simple technical indicators may not capture the full complexity of market dynamics</li>
+								<li><strong>Benchmark Comparison:</strong> Always compare against simple baseline strategies</li>
+							</ul>
+
+							<h2>Future Improvements</h2>
+							<p>The project identifies several areas for enhancement:</p>
+							<ul>
+								<li><strong>Reinforcement Learning Integration:</strong> Implement RL to create adaptive expected states</li>
+								<li><strong>Enhanced Indicators:</strong> Incorporate more sophisticated technical analysis tools</li>
+								<li><strong>Multi-Asset Analysis:</strong> Extend the approach to multiple securities</li>
+								<li><strong>Risk Management:</strong> Implement proper position sizing and stop-loss mechanisms</li>
+							</ul>
+
+							<h2>Conclusion</h2>
+							<p>This Markov chain-based financial prediction system serves as an educational exploration of quantitative finance methods. While the current implementation shows limitations compared to simple strategies, it demonstrates the importance of rigorous testing and honest evaluation in financial modeling. The project highlights that successful algorithmic trading requires sophisticated state modeling, robust risk management, and realistic performance expectations.</p>
+							
+							<p>The methodology is repeatable with any stock and time range, making it a valuable learning tool for understanding both the potential and pitfalls of mathematical approaches to financial prediction.</p>
+
+							<section>
+								<ul class="actions fit">
+									<li><a class="button fit">Markov Chains</a></li>
+									<li><a class="button fit">Financial Modeling</a></li>
+									<li><a class="button fit">Technical Analysis</a></li>
+									<li><a class="button fit">Quantitative Finance</a></li>
+								</ul>
+								<ul class="actions fit">
+									<li><a class="button fit">State Modeling</a></li>
+									<li><a class="button fit">Risk Management</a></li>
+									<li><a class="button fit">Trading Systems</a></li>
+									<li><a class="button fit">Time Series Analysis</a></li>
+								</ul>
+							</section>
+							
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>
+							<h3>Email</h3>
+							<a href="metinunlu97@gmail.com">metinunlu97@gmail.com</a>
+						</li>
+						<li>
+							<h3>Phone</h3>
+							<span>+39 351 750 3392</span>
+						</li>
+						<li>
+							<h3>Social</h3>
+							<ul class="icons">
+								<!--<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>-->
+								<li><a href="https://github.com/MetinUnlu" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+								<!--<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>-->
+								<li><a href="https://www.linkedin.com/in/metinunlu/" class="icon brands fa-linkedin-in" target="_blank"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://www.facebook.com/MetinUnlu.knight/" class="icon brands fa-facebook-f" target="_blank"><span class="label">Facebook</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
