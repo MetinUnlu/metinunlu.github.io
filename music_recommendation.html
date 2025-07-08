@@ -1,0 +1,288 @@
+<!DOCTYPE HTML>
+<!--
+	Hyperspace by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Music Recommendation System</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Header -->
+			<header id="header">
+				<a href="index.html" class="title">Music Recommendation System</a>
+				<nav>
+					<ul>
+						<li><a href="index.html">Home</a></li>
+						<li><a href="project_all.html" class="active">Projects</a></li>
+						<li><a href="index.html#two" >About Me</a></li>
+						<li><a href="index.html#three">Get in touch</a></li>
+					</ul>
+				</nav>
+			</header>
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<section id="main" class="wrapper">
+						<div class="inner">
+							<h1 class="major">Music Recommendation System</h1>
+							
+							<p><strong>Github Link:</strong> <a href="https://github.com/MetinUnlu/music-recommendation">github.com/MetinUnlu/music-recommendation</a></p>
+
+							<p><em>Final project for Mining Massive Datasets course at Verona University</em></p>
+
+							<p>This comprehensive music recommendation system demonstrates the implementation and comparison of multiple recommendation approaches on a large-scale dataset. The project tackles the challenge of processing over 3.6 million user-music interactions from the Million Song Dataset combined with Spotify and Last.fm data to deliver personalized music recommendations.</p>
+
+							<h2>Project Overview</h2>
+							<p>Music recommendation systems play a crucial role in modern streaming platforms, helping users discover new content based on their listening history and preferences. This project explores both collaborative filtering and content-based recommendation techniques, addressing common challenges such as the cold start problem, data sparsity, and scalability issues inherent in large-scale recommendation systems.</p>
+
+							<h2>Dataset and Data Processing</h2>
+							<p>The project utilizes the comprehensive Million Song Dataset enhanced with Spotify and Last.fm data:</p>
+							<ul>
+								<li><strong>Original Dataset:</strong> 9.7 million user-music interactions</li>
+								<li><strong>Processed Dataset:</strong> 3.65 million interactions after normalization and filtering</li>
+								<li><strong>Users:</strong> 692,376 unique users</li>
+								<li><strong>Music Tracks:</strong> 28,597 unique tracks with comprehensive metadata</li>
+								<li><strong>Features:</strong> Audio features from Spotify (danceability, energy, valence, tempo, etc.)</li>
+							</ul>
+
+							<h3>Data Preprocessing Strategy</h3>
+							<p>A sophisticated normalization approach was implemented:</p>
+							<ul>
+								<li>User-specific playcount normalization to handle varying listening patterns</li>
+								<li>Removal of zero-normalized interactions to reduce sparsity</li>
+								<li>Preservation of all unique users while significantly reducing dataset size</li>
+								<li>Creation of sparse matrices optimized for matrix factorization algorithms</li>
+							</ul>
+
+							<h2>Methodology and Implementation</h2>
+
+							<h3>1. Collaborative Filtering Approaches</h3>
+							<p>Multiple collaborative filtering techniques were implemented and compared:</p>
+
+							<h4>Koren Neighborhood Model</h4>
+							<ul>
+								<li>Global weight optimization independent of specific users</li>
+								<li>Similarity weights learned through optimization rather than correlation</li>
+								<li><strong>Performance:</strong> MSE of 0.117</li>
+							</ul>
+
+							<h4>Surprise Library Implementation</h4>
+							<ul>
+								<li>SVD (Singular Value Decomposition) method: MSE of 0.1107</li>
+								<li>kNN Baseline (Koren Neighborhood Model): MSE of 0.1208</li>
+								<li>Multiple algorithm comparison within a standardized framework</li>
+							</ul>
+
+							<h4>LightFM Recommender</h4>
+							<ul>
+								<li>Hybrid approach supporting both implicit and explicit feedback</li>
+								<li>Efficient matrix factorization for sparse data handling</li>
+								<li>Capability to work with all 3.65 million interactions</li>
+								<li>Integration of user and item metadata features</li>
+							</ul>
+
+							<h4>Implicit Library (Primary Method)</h4>
+							<p>The core recommendation engine utilizes the Implicit library, chosen for its superior performance:</p>
+							<ul>
+								<li><strong>Algorithm:</strong> Bayesian Personalized Ranking (BPR)</li>
+								<li><strong>Matrix Factorization:</strong> Alternating Least Squares (ALS)</li>
+								<li><strong>Optimization:</strong> Fast sparse matrix computations</li>
+								<li><strong>Scalability:</strong> Handles full dataset efficiently</li>
+							</ul>
+
+							<h3>2. Content-Based Filtering</h3>
+							<p>A k-Nearest Neighbors cosine similarity approach was implemented:</p>
+							<ul>
+								<li><strong>Method:</strong> sklearn NearestNeighbors with cosine metric</li>
+								<li><strong>Optimization:</strong> Avoided 19GB full similarity matrix by using efficient neighbor search</li>
+								<li><strong>Features:</strong> Audio characteristics, genre tags, and temporal features</li>
+								<li><strong>Output:</strong> Distance-based similarity recommendations</li>
+							</ul>
+
+							<h3>3. Hybrid Recommendation Strategy</h3>
+							<p>An intelligent hybrid approach combines both methods based on user behavior:</p>
+							<ul>
+								<li><strong>≤3 unique songs:</strong> Content-based recommendations only (10 suggestions)</li>
+								<li><strong>3-5 unique songs:</strong> Balanced approach (5 collaborative + 5 content-based)</li>
+								<li><strong>>5 unique songs:</strong> Collaborative-focused (7 collaborative + 3 content-based)</li>
+							</ul>
+
+							<h2>Technical Implementation Details</h2>
+
+							<h3>Model Architecture</h3>
+							<p>The system implements a modular architecture with the following components:</p>
+							<ul>
+								<li><strong>ImplicitRecommender Class:</strong> Wrapper for implicit feedback models</li>
+								<li><strong>ArtistRetriever Class:</strong> Efficient artist and track metadata management</li>
+								<li><strong>Custom Data Loaders:</strong> Optimized sparse matrix creation</li>
+								<li><strong>Evaluation Framework:</strong> Train-test split with precision@k metrics</li>
+							</ul>
+
+							<h3>Performance Optimization</h3>
+							<ul>
+								<li>Sparse matrix operations for memory efficiency</li>
+								<li>GPU acceleration support for model training</li>
+								<li>Batch processing for large-scale recommendations</li>
+								<li>Model serialization for production deployment</li>
+							</ul>
+
+							<h2>Results and Performance Analysis</h2>
+
+							<h3>Model Performance Comparison</h3>
+							<ul>
+								<li><strong>Koren Neighborhood Model:</strong> MSE 0.117</li>
+								<li><strong>SVD (Surprise):</strong> MSE 0.1107 (best traditional method)</li>
+								<li><strong>kNN Baseline:</strong> MSE 0.1208</li>
+								<li><strong>Implicit BPR:</strong> Superior recommendation quality with efficient processing</li>
+							</ul>
+
+                            <h3>Real-World Recommendation Examples</h3>
+                            <p>The system generates recommendations by combining collaborative filtering and content-based filtering to match both user preferences and musical similarity. For example, for a user with an alternative/indie and electronic music taste, the following tracks are recommended:</p>
+                            <ul>
+                                <li>Some Kinda Love by The Velvet Underground (Collaborative Filtering Based)</li>
+                                <li>Age of Consent by New Order (Collaborative Filtering Based)</li>
+                                <li>I'm Sleeping in a Submarine by Arcade Fire (Collaborative Filtering Based)</li>
+                                <li>Childhood Remembered by Kevin Kern (Collaborative Filtering Based)</li>
+                                <li>Thieves Like Us by New Order (Collaborative Filtering Based)</li>
+                                <li>Kein Mitleid by Eisbrecher (Content Based)</li>
+                                <li>Tostaky (Le Continent) by Noir Désir (Content Based)</li>
+                                <li>Easy Love by MSTRKRFT (Content Based)</li>
+                                <li>Avantasia by Avantasia (Content Based)</li>
+                                <li>Mysterious Skies by ATB (Content Based)</li>
+                            </ul>
+                            <p>
+                                Collaborative filtering recommendations (e.g., The Velvet Underground, New Order, Arcade Fire) are based on users with similar listening patterns, capturing shared music tastes such as alternative rock and indie genres. Content-based recommendations (e.g., Eisbrecher, Noir Désir, MSTRKRFT, ATB) are selected for their audio features, genre tags, and stylistic similarity to the user's previous favorites, ensuring diversity and relevance even for less common preferences. This hybrid approach ensures the user receives both familiar and novel tracks that align with their unique musical profile.
+                            </p>
+
+							<h3>Cold Start Problem Mitigation</h3>
+							<p>The hybrid approach effectively addresses the cold start problem:</p>
+							<ul>
+								<li><strong>Over 50% of users</strong> have ≤3 song interactions, requiring content-based fallback</li>
+								<li><strong>43.34% of users</strong> listened to >3 different tracks, enabling collaborative filtering</li>
+								<li><strong>Seamless transition</strong> between recommendation strategies based on user activity</li>
+							</ul>
+
+							<h2>Technical Challenges and Solutions</h2>
+
+							<h3>Scalability Challenges</h3>
+							<ul>
+								<li><strong>Memory Constraints:</strong> Full cosine similarity matrix would require 19GB RAM</li>
+								<li><strong>Solution:</strong> Implemented efficient k-NN with selective neighbor computation</li>
+								<li><strong>Processing Speed:</strong> Utilized sparse matrix operations and GPU acceleration</li>
+							</ul>
+
+							<h3>Data Sparsity Issues</h3>
+							<ul>
+								<li><strong>Challenge:</strong> Most users interact with very few songs</li>
+								<li><strong>Solution:</strong> Intelligent hybrid recommendation with user-specific thresholds</li>
+								<li><strong>Result:</strong> Maintained recommendation quality across all user segments</li>
+							</ul>
+
+							<h2>Technologies and Libraries</h2>
+							<ul>
+								<li><strong>Python:</strong> Core programming language</li>
+								<li><strong>Implicit:</strong> Fast collaborative filtering algorithms</li>
+								<li><strong>LightFM:</strong> Hybrid recommendation framework</li>
+								<li><strong>Surprise:</strong> Traditional collaborative filtering benchmarks</li>
+								<li><strong>Scikit-learn:</strong> k-NN and similarity computations</li>
+								<li><strong>Pandas & NumPy:</strong> Data manipulation and numerical computing</li>
+								<li><strong>SciPy:</strong> Sparse matrix operations</li>
+								<li><strong>Jupyter:</strong> Interactive development and analysis</li>
+							</ul>
+
+							<h2>Key Insights and Learnings</h2>
+
+							<h3>Algorithm Performance Insights</h3>
+							<ul>
+								<li><strong>Matrix Factorization:</strong> Implicit BPR outperformed traditional SVD approaches</li>
+								<li><strong>Hybrid Approach:</strong> Essential for handling diverse user behavior patterns</li>
+								<li><strong>Content Features:</strong> Audio features proved valuable for cold start scenarios</li>
+								<li><strong>Normalization:</strong> User-specific normalization crucial for handling varying listening patterns</li>
+							</ul>
+
+							<h3>Practical Implementation Lessons</h3>
+							<ul>
+								<li><strong>Data Quality:</strong> Preprocessing quality directly impacts recommendation accuracy</li>
+								<li><strong>Scalability Design:</strong> Early architecture decisions critical for large-scale deployment</li>
+								<li><strong>Evaluation Metrics:</strong> Multiple metrics needed for comprehensive performance assessment</li>
+								<li><strong>User Segmentation:</strong> Different approaches needed for different user engagement levels</li>
+							</ul>
+
+							<h2>Future Enhancements</h2>
+							<ul>
+								<li><strong>Deep Learning Integration:</strong> Neural collaborative filtering and autoencoders</li>
+								<li><strong>Real-time Learning:</strong> Online learning algorithms for dynamic preference adaptation</li>
+								<li><strong>Multi-modal Features:</strong> Integration of lyrics, audio spectrograms, and social signals</li>
+								<li><strong>Contextual Recommendations:</strong> Time-aware and mood-based recommendation systems</li>
+								<li><strong>Explainable AI:</strong> Interpretable recommendation explanations for users</li>
+							</ul>
+
+							<h2>Academic Contribution</h2>
+							<p>This project demonstrates a comprehensive understanding of recommendation system principles and their practical implementation at scale. The comparative analysis of multiple algorithms, intelligent hybrid approach, and successful handling of real-world challenges like data sparsity and cold start problems showcase both theoretical knowledge and practical engineering skills essential in modern data science applications.</p>
+
+							<section>
+								<ul class="actions fit">
+									<li><a class="button fit">Recommendation Systems</a></li>
+									<li><a class="button fit">Collaborative Filtering</a></li>
+									<li><a class="button fit">Matrix Factorization</a></li>
+									<li><a class="button fit">Content-Based Filtering</a></li>
+								</ul>
+								<ul class="actions fit">
+									<li><a class="button fit">Implicit Feedback</a></li>
+									<li><a class="button fit">Sparse Matrices</a></li>
+									<li><a class="button fit">Hybrid Systems</a></li>
+									<li><a class="button fit">Large-Scale ML</a></li>
+								</ul>
+							</section>
+							
+						</div>
+					</section>
+
+			</div>
+
+		<!-- Footer -->
+			<footer id="footer" class="wrapper alt">
+				<div class="inner">
+					<ul class="menu">
+						<li>
+							<h3>Email</h3>
+							<a href="metinunlu97@gmail.com">metinunlu97@gmail.com</a>
+						</li>
+						<li>
+							<h3>Phone</h3>
+							<span>+39 351 750 3392</span>
+						</li>
+						<li>
+							<h3>Social</h3>
+							<ul class="icons">
+								<!--<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>-->
+								<li><a href="https://github.com/MetinUnlu" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
+								<!--<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>-->
+								<li><a href="https://www.linkedin.com/in/metinunlu/" class="icon brands fa-linkedin-in" target="_blank"><span class="label">LinkedIn</span></a></li>
+								<li><a href="https://www.facebook.com/MetinUnlu.knight/" class="icon brands fa-facebook-f" target="_blank"><span class="label">Facebook</span></a></li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</footer>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
