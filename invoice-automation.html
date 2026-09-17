@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>AI Invoice Payment Approval &mdash; Metin Ünlü</title>
+	<meta name="description" content="Supplier invoices in, ISO 20022 payment file out: OCR, LLM extraction, master-data validation and a human supervision desk for every uncertain case." />
+	<meta property="og:title" content="AI Invoice Payment Approval &mdash; Metin Ünlü" />
+	<meta property="og:description" content="Supplier invoices in, ISO 20022 payment file out: OCR, LLM extraction, master-data validation and a human supervision desk for every uncertain case." />
+	<link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+	<link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
+
+	<header id="header">
+		<div class="inner">
+			<a href="index.html" class="brand">
+				<span class="mark"><i></i><i></i><i></i><i></i></span>
+				Metin Ünlü
+				<span class="sep"></span>
+				<span class="sub">AI &amp; Full-Stack Engineer</span>
+			</a>
+			<button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+			<nav>
+				<ul>
+					<li><a href="index.html#work">Work</a></li>
+					<li><a href="project_all.html" class="active">Projects</a></li>
+					<li><a href="cvpage.html">CV</a></li>
+					<li><a href="index.html#contact">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<section class="wrapper hero">
+		<div class="inner">
+			<div class="eyebrow " data-a>Finance operations &middot; European client</div>
+			<h1 data-a>AI Invoice Payment Approval</h1>
+			<p class="lead" data-a>Payment approval was a per-invoice clerical check: read the PDF, match the supplier and IBAN against records, check the amount and look for duplicates, then hand-key a payment file. This system automates the clean cases end to end and puts <b>only the exceptions</b> in front of a person &mdash; with a full audit trail, and without ever moving money automatically.</p>
+			<div class="bar4" data-a><i></i><i></i><i></i><i></i></div>
+		</div>
+	</section>
+
+	<section class="wrapper soft">
+		<div class="inner">
+			<ul class="facts" data-a>
+				<li><span class="k">Role</span><span>Full stack plus infrastructure &mdash; roughly half of 554 commits, spread across every layer: backend, frontend, schema, AI gateway and deployment configuration.</span></li>
+				<li><span class="k">Context</span><span>European financial-operations client. Built on the in-house enterprise AI kernel.</span></li>
+			</ul>
+
+			<ul class="metrics" data-a>
+				<li class="metric">
+					<span class="v">~40k</span>
+					<span class="l">lines of domain code on the AI kernel</span>
+				</li>
+				<li class="metric">
+					<span class="v">~50%</span>
+					<span class="l">of 554 repository commits mine</span>
+				</li>
+				<li class="metric">
+					<span class="v">ISO 20022</span>
+					<span class="l"><code>pain.001</code> files for e-banking</span>
+				</li>
+				<li class="metric">
+					<span class="v">0</span>
+					<span class="l">payments executed automatically</span>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="wrapper">
+		<div class="inner">
+			<div class="prose">
+				<h2 data-a>The problem</h2>
+				<p data-a>Invoice-to-payment is high volume, low variance and unforgiving of mistakes. Most invoices are unremarkable and could be processed without human attention; a small minority are wrong, duplicated, or pointing at a bank account that does not belong to the supplier on the letterhead.</p>
+				<p data-a>Clerical review treats all of them identically, spending the same two to three minutes on the boring ones as on the dangerous ones.</p>
+				<h2 data-a>What I built</h2>
+				<h3 data-a>Pipeline</h3>
+				<ul data-a>
+					<li>Batch upload of supplier invoices, OCR'd with GPU-accelerated models.</li>
+					<li>LLM extraction of structured invoice data &mdash; supplier, IBAN, amounts, dates, line items &mdash; validated against a schema rather than parsed hopefully.</li>
+					<li>Validation against supplier master data: IBAN match, amount plausibility, duplicate detection, blocked accounts, overdue and already-paid checks.</li>
+					<li>A <b>human supervision desk</b> where anything uncertain lands &mdash; unknown supplier, mismatched IBAN, blocked account, suspected duplicate &mdash; with the extracted evidence and the source document side by side.</li>
+					<li>Generation of an <b>ISO 20022 <code>pain.001</code></b> payment file for e-banking, produced only from approved invoices.</li>
+					<li>Durable Temporal workflows, so a crash mid-batch resumes instead of restarting or, worse, double-processing.</li>
+				</ul>
+				<h3 data-a>Application and platform</h3>
+				<ul data-a>
+					<li>NestJS backend: authentication, AI gateway integration, governed tool layer, workflows, audit and observability, administration APIs.</li>
+					<li>Next.js frontend: batch upload, invoice review tabs, the supervision desk, supplier master data, payment runs and dashboards.</li>
+					<li>Database schema and migrations in Prisma, the Python AI gateway, and the Docker Compose, identity and authorization configuration.</li>
+				</ul>
+				<h2 data-a>The design rule</h2>
+				<p data-a>Nothing moves money automatically. The system prepares a payment file; a person approves it, and the bank executes it. Every automated decision along the way &mdash; every extraction, every validation, every routing choice &mdash; is recorded and attributable, because in finance operations an unexplainable automated decision is worse than no automation at all.</p>
+				<h2 data-a>Outcome</h2>
+				<p data-a>Shipped through the platform's nine milestones and an invoice-centric overhaul in six phases: roughly 40,000 lines of domain code, with batch upload through payment file working end to end on crash-resumable workflows.</p>
+				<p data-a><i>Estimate, not a logged metric:</i> a 50-invoice batch that previously required two to three minutes of clerical checking per invoice now runs unattended, with only flagged invoices needing an operator.</p>
+			</div>
+
+			<h2 data-a>Stack</h2>
+			<ul class="chip-row" data-a>
+				<li><span class="chip">TypeScript</span></li>
+				<li><span class="chip">NestJS</span></li>
+				<li><span class="chip">Next.js</span></li>
+				<li><span class="chip">React</span></li>
+				<li><span class="chip">HeroUI</span></li>
+				<li><span class="chip">Python</span></li>
+				<li><span class="chip">FastAPI</span></li>
+				<li><span class="chip">PostgreSQL</span></li>
+				<li><span class="chip">Prisma</span></li>
+				<li><span class="chip">Temporal</span></li>
+				<li><span class="chip">Keycloak</span></li>
+				<li><span class="chip">OpenFGA</span></li>
+				<li><span class="chip">MCP tools</span></li>
+				<li><span class="chip">Ollama</span></li>
+				<li><span class="chip">GPU OCR</span></li>
+				<li><span class="chip">ISO 20022</span></li>
+				<li><span class="chip">Docker</span></li>
+				<li><span class="chip">OpenTelemetry</span></li>
+			</ul>
+
+			<div class="rule-note" style="margin-top:38px" data-a>
+				<p><b>Note:</b> this case study is deliberately written without client names, product names or customer data. Commit shares, code volume and milestone counts come from the repository; the batch-processing time saving is an engineering estimate.</p>
+			</div>
+
+			<ul class="actions" data-a>
+				<li><a href="project_all.html" class="button">All projects</a></li>
+				<li><a href="index.html#contact" class="button primary">Get in touch</a></li>
+			</ul>
+		</div>
+	</section>
+
+	<footer id="footer">
+		<div class="inner">
+			<div class="footer-grid">
+				<ul class="menu">
+					<li>
+						<h3>Email</h3>
+						<a href="mailto:metinunlu97@gmail.com">metinunlu97@gmail.com</a>
+					</li>
+					<li>
+						<h3>Elsewhere</h3>
+						<ul class="icons">
+							<li><a href="https://github.com/MetinUnlu" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.linkedin.com/in/metinunlu/" class="icon brands fa-linkedin-in" target="_blank" rel="noopener"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</li>
+				</ul>
+				<span class="copyright">&copy; Metin Ünlü &mdash; All rights reserved</span>
+			</div>
+		</div>
+	</footer>
+
+	<script src="assets/js/site.js"></script>
+</body>
+</html>

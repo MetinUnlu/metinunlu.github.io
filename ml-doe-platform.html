@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>ML-Driven Design of Experiments &mdash; Metin Ünlü</title>
+	<meta name="description" content="Machine-learning driven design of experiments and digital-twin modelling for industrial process and formulation R&D, built on an enterprise AI platform." />
+	<meta property="og:title" content="ML-Driven Design of Experiments &mdash; Metin Ünlü" />
+	<meta property="og:description" content="Machine-learning driven design of experiments and digital-twin modelling for industrial process and formulation R&D, built on an enterprise AI platform." />
+	<link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+	<link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
+
+	<header id="header">
+		<div class="inner">
+			<a href="index.html" class="brand">
+				<span class="mark"><i></i><i></i><i></i><i></i></span>
+				Metin Ünlü
+				<span class="sep"></span>
+				<span class="sub">AI &amp; Full-Stack Engineer</span>
+			</a>
+			<button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+			<nav>
+				<ul>
+					<li><a href="index.html#work">Work</a></li>
+					<li><a href="project_all.html" class="active">Projects</a></li>
+					<li><a href="cvpage.html">CV</a></li>
+					<li><a href="index.html#contact">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<section class="wrapper hero">
+		<div class="inner">
+			<div class="eyebrow g" data-a>Applied machine learning &middot; Process R&amp;D client</div>
+			<h1 data-a>ML-Driven Design of Experiments &amp; Digital Twin</h1>
+			<p class="lead" data-a>Process and formulation R&amp;D traditionally advances by running batches and seeing what happens. This platform lets engineers <b>plan experiments against a model instead</b>: propose candidate conditions, predict outcomes with quantified uncertainty, and spend physical batches only where the model is genuinely unsure.</p>
+			<div class="bar4" data-a><i></i><i></i><i></i><i></i></div>
+		</div>
+	</section>
+
+	<section class="wrapper soft">
+		<div class="inner">
+			<ul class="facts" data-a>
+				<li><span class="k">Role</span><span>Full stack &mdash; 339 of 542 commits. Backend platform modules, database schema, the experiment and analysis frontend, a standalone Python modelling service, and infrastructure. Owned the administration console and production-hardening milestones plus the full migration of the legacy application onto the platform.</span></li>
+				<li><span class="k">Context</span><span>Client in industrial process and formulation R&amp;D. Delivered as the first domain module on the AI application kernel.</span></li>
+			</ul>
+
+			<ul class="metrics" data-a>
+				<li class="metric">
+					<span class="v">0.81 / 0.80 / 0.67</span>
+					<span class="l">R² on three held-out runs (logged)</span>
+				</li>
+				<li class="metric">
+					<span class="v">0.04&ndash;0.07</span>
+					<span class="l">MAE in mol/mol across held-out runs</span>
+				</li>
+				<li class="metric">
+					<span class="v">94&ndash;97%</span>
+					<span class="l">of measurements inside 90% intervals</span>
+				</li>
+				<li class="metric">
+					<span class="v">339 / 542</span>
+					<span class="l">commits mine, across every layer</span>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="wrapper">
+		<div class="inner">
+			<div class="prose">
+				<h2 data-a>The problem</h2>
+				<p data-a>Trial-and-error experimentation is slow and expensive: each batch consumes material, equipment time and operator attention, and the search space of process conditions and formulations is far larger than any experimental budget.</p>
+				<p data-a>The client needed two things at once &mdash; predictive models good enough to trust, and an application disciplined enough to deploy in an industrial setting, with real users, access control and an audit trail.</p>
+				<h2 data-a>What I built</h2>
+				<ul data-a>
+					<li>A standalone Python modelling service (FastAPI) implementing the design-of-experiments and surrogate modelling logic, kept deliberately separate from the application layer so the science can evolve independently.</li>
+					<li>Domain modules on the enterprise AI kernel &mdash; schema design, shared types, workflow and authorization integration.</li>
+					<li>The experiment planning and analysis interface in Next.js: candidate design, run tracking, prediction views with uncertainty, and comparison against measured outcomes.</li>
+					<li>The roughly 40-page administration console, and the production-hardening work &mdash; retention policies, least-privilege service accounts, deployment and backup.</li>
+					<li>A two-round migration of the legacy standalone application onto the kernel, without losing the modelling behaviour the client already relied on.</li>
+				</ul>
+				<h2 data-a>Modelling, and honesty about uncertainty</h2>
+				<p data-a>The headline result is a soft sensor for a distillation process &mdash; inferring a quantity that is expensive or slow to measure directly from signals that are cheap and continuous.</p>
+				<p data-a>On three held-out runs it reached an R² of 0.81, 0.80 and 0.67, with mean absolute error between 0.04 and 0.07 mol/mol. The third run is visibly the weakest, and the interface says so rather than hiding it.</p>
+				<p data-a>Just as important as accuracy is calibration: the 90% prediction intervals covered <b>94&ndash;97%</b> of held-out measurements, so the model is slightly conservative rather than overconfident. For an engineer deciding whether to trust a prediction or run the batch anyway, that is the number that matters.</p>
+				<h2 data-a>Outcome</h2>
+				<p data-a>Shipped through production hardening, with the legacy application fully migrated onto the platform. Because it is built on the kernel, every model run, parameter change and prediction inherits the same authorization, audit and observability guarantees as the rest of the client's AI estate.</p>
+			</div>
+
+			<h2 data-a>Stack</h2>
+			<ul class="chip-row" data-a>
+				<li><span class="chip">Python</span></li>
+				<li><span class="chip">FastAPI</span></li>
+				<li><span class="chip">scikit-learn</span></li>
+				<li><span class="chip">SciPy</span></li>
+				<li><span class="chip">Soft sensors</span></li>
+				<li><span class="chip">Design of experiments</span></li>
+				<li><span class="chip">Uncertainty quantification</span></li>
+				<li><span class="chip">TypeScript</span></li>
+				<li><span class="chip">NestJS</span></li>
+				<li><span class="chip">Next.js</span></li>
+				<li><span class="chip">PostgreSQL</span></li>
+				<li><span class="chip">Prisma</span></li>
+				<li><span class="chip">Temporal</span></li>
+				<li><span class="chip">Docker</span></li>
+				<li><span class="chip">OpenTelemetry</span></li>
+			</ul>
+
+			<div class="rule-note" style="margin-top:38px" data-a>
+				<p><b>Note:</b> this case study is deliberately written without client names, product names or customer data. The model metrics quoted here are logged evaluation results on held-out runs, not estimates.</p>
+			</div>
+
+			<ul class="actions" data-a>
+				<li><a href="project_all.html" class="button">All projects</a></li>
+				<li><a href="index.html#contact" class="button primary">Get in touch</a></li>
+			</ul>
+		</div>
+	</section>
+
+	<footer id="footer">
+		<div class="inner">
+			<div class="footer-grid">
+				<ul class="menu">
+					<li>
+						<h3>Email</h3>
+						<a href="mailto:metinunlu97@gmail.com">metinunlu97@gmail.com</a>
+					</li>
+					<li>
+						<h3>Elsewhere</h3>
+						<ul class="icons">
+							<li><a href="https://github.com/MetinUnlu" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.linkedin.com/in/metinunlu/" class="icon brands fa-linkedin-in" target="_blank" rel="noopener"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</li>
+				</ul>
+				<span class="copyright">&copy; Metin Ünlü &mdash; All rights reserved</span>
+			</div>
+		</div>
+	</footer>
+
+	<script src="assets/js/site.js"></script>
+</body>
+</html>

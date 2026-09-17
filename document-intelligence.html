@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Document Intelligence Platform &mdash; Metin Ünlü</title>
+	<meta name="description" content="Full-stack document intelligence platform running remote GPU-accelerated OCR and extracting schema-validated structured data from dense technical documents with LLMs." />
+	<meta property="og:title" content="Document Intelligence Platform &mdash; Metin Ünlü" />
+	<meta property="og:description" content="Full-stack document intelligence platform running remote GPU-accelerated OCR and extracting schema-validated structured data from dense technical documents with LLMs." />
+	<link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+	<link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
+
+	<header id="header">
+		<div class="inner">
+			<a href="index.html" class="brand">
+				<span class="mark"><i></i><i></i><i></i><i></i></span>
+				Metin Ünlü
+				<span class="sep"></span>
+				<span class="sub">AI &amp; Full-Stack Engineer</span>
+			</a>
+			<button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+			<nav>
+				<ul>
+					<li><a href="index.html#work">Work</a></li>
+					<li><a href="project_all.html" class="active">Projects</a></li>
+					<li><a href="cvpage.html">CV</a></li>
+					<li><a href="index.html#contact">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<section class="wrapper hero">
+		<div class="inner">
+			<div class="eyebrow p" data-a>Document AI &middot; Technical document processing</div>
+			<h1 data-a>Document Intelligence &amp; Structured Extraction</h1>
+			<p class="lead" data-a>Dense technical documents &mdash; inspection forms, census sheets, engineering reports &mdash; are still transcribed by hand into spreadsheets. This platform runs GPU-accelerated OCR on a remote machine over SSH, then extracts structured data from the result with LLMs, <b>validated against a domain schema</b> so the output is a dataset rather than a wall of text.</p>
+			<div class="bar4" data-a><i></i><i></i><i></i><i></i></div>
+		</div>
+	</section>
+
+	<section class="wrapper soft">
+		<div class="inner">
+			<ul class="facts" data-a>
+				<li><span class="k">Role</span><span>Full stack &mdash; built the LLM extraction engine, chunkers and model integrations on the backend, and the schema editor, live extraction viewer and evaluation suite on the frontend.</span></li>
+				<li><span class="k">Context</span><span>Technical document processing, including civil infrastructure inspection and census forms.</span></li>
+			</ul>
+
+			<ul class="metrics" data-a>
+				<li class="metric">
+					<span class="v">20&ndash;30 min &rarr; &lt;2 min</span>
+					<span class="l">per report, manual to automated (estimate)</span>
+				</li>
+				<li class="metric">
+					<span class="v">Schema-validated</span>
+					<span class="l">every extraction checked before acceptance</span>
+				</li>
+				<li class="metric">
+					<span class="v">Multi-run</span>
+					<span class="l">accuracy and consistency scored vs ground truth</span>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="wrapper">
+		<div class="inner">
+			<div class="prose">
+				<h2 data-a>The problem</h2>
+				<p data-a>OCR alone does not solve document data entry. It converts pixels into text and leaves the hard part untouched: deciding which number is the span length, which date is the inspection date, and what to do when a field is missing or ambiguous.</p>
+				<p data-a>Getting a language model to fill a schema is easy to demo and hard to trust &mdash; the same document can produce different answers on different runs, and without measurement nobody knows how often.</p>
+				<h2 data-a>What I built</h2>
+				<h3 data-a>Extraction engine</h3>
+				<ul data-a>
+					<li>Remote GPU-accelerated OCR executed over SSH, so heavy vision models run on the machine that has the GPU while the application stays lightweight.</li>
+					<li>HTML and Markdown chunkers that preserve document structure &mdash; tables stay tables &mdash; because structure is most of the signal in technical forms.</li>
+					<li>An LLM extraction engine with schema validation, integrated with both Ollama and vLLM so the same pipeline runs against locally served open-weight models.</li>
+					<li>Output as standardized JSON and CSV datasets, ready to load rather than ready to re-type.</li>
+				</ul>
+				<h3 data-a>Application</h3>
+				<ul data-a>
+					<li>A <b>visual schema editor</b>, so a domain expert can define and adjust the target structure without writing JSON schema by hand.</li>
+					<li>Configuration helpers for model, chunking and prompt settings.</li>
+					<li>A live extraction viewer over server-sent events, showing fields being filled as the run proceeds.</li>
+					<li>A <b>multi-run evaluation and benchmarking suite</b>: run the same documents repeatedly, score against ground truth, and measure both accuracy and run-to-run consistency.</li>
+				</ul>
+				<h2 data-a>Why the evaluation suite matters</h2>
+				<p data-a>The benchmarking suite is the part I would keep if I could keep only one. It converts &ldquo;the extraction looks good&rdquo; into a number, and it makes regression visible when a model, prompt or chunking strategy changes. Without it, a document extraction system is a demo; with it, it is something you can put in front of a client and defend.</p>
+				<h2 data-a>Outcome</h2>
+				<p data-a>Shipped an automated extraction and evaluation engine with multi-run accuracy and consistency scoring against ground truth.</p>
+				<p data-a><i>Estimate, not a logged metric:</i> manual transcription of roughly 20&ndash;30 minutes per report reduced to under two minutes of automated processing.</p>
+			</div>
+
+			<h2 data-a>Stack</h2>
+			<ul class="chip-row" data-a>
+				<li><span class="chip">Python</span></li>
+				<li><span class="chip">FastAPI</span></li>
+				<li><span class="chip">SQLAlchemy</span></li>
+				<li><span class="chip">SQLite</span></li>
+				<li><span class="chip">Ollama</span></li>
+				<li><span class="chip">vLLM</span></li>
+				<li><span class="chip">GPU OCR</span></li>
+				<li><span class="chip">Schema validation</span></li>
+				<li><span class="chip">SSE streaming</span></li>
+				<li><span class="chip">React</span></li>
+				<li><span class="chip">TypeScript</span></li>
+				<li><span class="chip">Vite</span></li>
+				<li><span class="chip">Docker Compose</span></li>
+				<li><span class="chip">Evaluation harness</span></li>
+			</ul>
+
+			<div class="rule-note" style="margin-top:38px" data-a>
+				<p><b>Note:</b> this case study is deliberately written without client names, product names or customer data. The time saving is an engineering estimate; accuracy and consistency are measured by the platform's own evaluation suite against ground truth.</p>
+			</div>
+
+			<ul class="actions" data-a>
+				<li><a href="project_all.html" class="button">All projects</a></li>
+				<li><a href="index.html#contact" class="button primary">Get in touch</a></li>
+			</ul>
+		</div>
+	</section>
+
+	<footer id="footer">
+		<div class="inner">
+			<div class="footer-grid">
+				<ul class="menu">
+					<li>
+						<h3>Email</h3>
+						<a href="mailto:metinunlu97@gmail.com">metinunlu97@gmail.com</a>
+					</li>
+					<li>
+						<h3>Elsewhere</h3>
+						<ul class="icons">
+							<li><a href="https://github.com/MetinUnlu" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.linkedin.com/in/metinunlu/" class="icon brands fa-linkedin-in" target="_blank" rel="noopener"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</li>
+				</ul>
+				<span class="copyright">&copy; Metin Ünlü &mdash; All rights reserved</span>
+			</div>
+		</div>
+	</footer>
+
+	<script src="assets/js/site.js"></script>
+</body>
+</html>

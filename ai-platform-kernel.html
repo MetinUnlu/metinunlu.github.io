@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Enterprise AI Application Kernel &mdash; Metin Ünlü</title>
+	<meta name="description" content="A reusable, self-hostable foundation for enterprise AI applications: identity, fine-grained authorization, AI gateway, governed tool execution, durable workflows, audit and observability." />
+	<meta property="og:title" content="Enterprise AI Application Kernel &mdash; Metin Ünlü" />
+	<meta property="og:description" content="A reusable, self-hostable foundation for enterprise AI applications: identity, fine-grained authorization, AI gateway, governed tool execution, durable workflows, audit and observability." />
+	<link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+	<link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
+
+	<header id="header">
+		<div class="inner">
+			<a href="index.html" class="brand">
+				<span class="mark"><i></i><i></i><i></i><i></i></span>
+				Metin Ünlü
+				<span class="sep"></span>
+				<span class="sub">AI &amp; Full-Stack Engineer</span>
+			</a>
+			<button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+			<nav>
+				<ul>
+					<li><a href="index.html#work">Work</a></li>
+					<li><a href="project_all.html" class="active">Projects</a></li>
+					<li><a href="cvpage.html">CV</a></li>
+					<li><a href="index.html#contact">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<section class="wrapper hero">
+		<div class="inner">
+			<div class="eyebrow " data-a>Platform architecture &middot; Téchnéos</div>
+			<h1 data-a>Enterprise AI Application Kernel</h1>
+			<p class="lead" data-a>Before this existed, every AI engagement rebuilt the same things from scratch: authentication, permissions, LLM provider plumbing, audit logging. The kernel makes that a <b>one-time cost</b>. It ships identity, fine-grained authorization, an AI gateway, governed tool execution, workflow orchestration, audit and observability out of the box, so a client project only writes domain logic.</p>
+			<div class="bar4" data-a><i></i><i></i><i></i><i></i></div>
+		</div>
+	</section>
+
+	<section class="wrapper soft">
+		<div class="inner">
+			<ul class="facts" data-a>
+				<li><span class="k">Role</span><span>Platform architect and full-stack engineer &mdash; roughly 220 of 422 kernel commits, across backend, frontend and infrastructure. A second engineer owned the document-extraction business module.</span></li>
+				<li><span class="k">Context</span><span>Internal platform product, built to be reused across client engagements.</span></li>
+			</ul>
+
+			<ul class="metrics" data-a>
+				<li class="metric">
+					<span class="v">9 / 9</span>
+					<span class="l">milestones shipped, auth to production hardening</span>
+				</li>
+				<li class="metric">
+					<span class="v">~10 weeks</span>
+					<span class="l">empty repo to production-hardened platform</span>
+				</li>
+				<li class="metric">
+					<span class="v">209</span>
+					<span class="l">test suites, plus CI-enforced invariants</span>
+				</li>
+				<li class="metric">
+					<span class="v">7</span>
+					<span class="l">registration seams for client apps</span>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="wrapper">
+		<div class="inner">
+			<div class="prose">
+				<h2 data-a>The problem</h2>
+				<p data-a>Enterprise AI systems fail on governance long before they fail on model quality. A client in a regulated sector cannot deploy an assistant that calls internal tools unless every action is attributable: who asked, what were they allowed to do, which prompt version answered, which tools ran, and what was returned.</p>
+				<p data-a>Rebuilding that per project is expensive and inconsistent. The kernel turns it into infrastructure.</p>
+				<h2 data-a>What I built</h2>
+				<h3 data-a>Backend (NestJS)</h3>
+				<ul data-a>
+					<li><b>Execution context &amp; correlation propagation</b> &mdash; a single correlation identifier carried through every request, LLM call, tool invocation and audit record.</li>
+					<li><b>Prompt registry with immutable versioning</b> &mdash; prompts are addressable artifacts, so any past answer can be traced to the exact text that produced it.</li>
+					<li><b>MCP tool layer</b> &mdash; governed tool execution, where each tool call is authorized, logged and bounded rather than trusted by default.</li>
+					<li><b>Durable workflows</b> on Temporal, so long-running AI jobs survive restarts and resume rather than restart.</li>
+					<li><b>Audit and retention</b> with allowlisted payloads, plus encryption of tenant LLM provider keys.</li>
+					<li><b>Identity and authorization</b> &mdash; OIDC provider admin integration, fine-grained access groups and grant reconciliation against the authorization engine.</li>
+				</ul>
+				<h3 data-a>Frontend (Next.js)</h3>
+				<ul data-a>
+					<li>A streaming chat interface with visible tool calls, attachments and dark mode.</li>
+					<li>An administration console of roughly 40 pages covering tenants, users, groups, grants, prompts, tools, models, workflows, audit and system health.</li>
+				</ul>
+				<h3 data-a>Infrastructure</h3>
+				<ul data-a>
+					<li>Docker Compose stacks for local, staging and production topologies.</li>
+					<li>Identity realm-as-code and a version-controlled authorization model, so access rules are reviewable in pull requests.</li>
+					<li>CI checks enforcing architectural invariants, plus production deployment and backup tooling.</li>
+				</ul>
+				<h2 data-a>Invariants enforced in CI</h2>
+				<p data-a>Some properties are too important to leave to code review, so the build fails when they are violated:</p>
+				<ul data-a>
+					<li><b>No secret defaults</b> &mdash; no configuration path silently falls back to a development credential.</li>
+					<li><b>No prompt text in telemetry</b> &mdash; traces and metrics carry identifiers, never user or prompt content.</li>
+					<li><b>Allowlisted audit payloads</b> &mdash; audit records contain explicitly permitted fields only.</li>
+				</ul>
+				<h2 data-a>Outcome</h2>
+				<p data-a>All nine planned milestones shipped in about ten weeks, ending with a documented boundary between kernel and business code: seven registration seams that let a client application be built without editing a single kernel file.</p>
+				<p data-a>The property that matters commercially is traceability. One correlation identifier resolves an AI action to its authorization decision, prompt version, tool calls and distributed trace &mdash; which is what makes these systems deployable inside regulated client networks at all.</p>
+				<p data-a><i>Estimate, not a logged metric:</i> a new client project now starts with authentication, role-based access, audit and AI plumbing already working, realistically saving several weeks of setup per engagement.</p>
+			</div>
+
+			<h2 data-a>Stack</h2>
+			<ul class="chip-row" data-a>
+				<li><span class="chip">TypeScript</span></li>
+				<li><span class="chip">NestJS</span></li>
+				<li><span class="chip">Next.js</span></li>
+				<li><span class="chip">Prisma</span></li>
+				<li><span class="chip">Python</span></li>
+				<li><span class="chip">FastAPI</span></li>
+				<li><span class="chip">LiteLLM</span></li>
+				<li><span class="chip">PostgreSQL</span></li>
+				<li><span class="chip">Keycloak (OIDC)</span></li>
+				<li><span class="chip">OpenFGA</span></li>
+				<li><span class="chip">Temporal</span></li>
+				<li><span class="chip">MCP</span></li>
+				<li><span class="chip">Docker Compose</span></li>
+				<li><span class="chip">OpenTelemetry</span></li>
+				<li><span class="chip">Jaeger</span></li>
+				<li><span class="chip">Prometheus</span></li>
+				<li><span class="chip">S3-compatible storage</span></li>
+				<li><span class="chip">Jest</span></li>
+				<li><span class="chip">pytest</span></li>
+			</ul>
+
+			<div class="rule-note" style="margin-top:38px" data-a>
+				<p><b>Note:</b> this case study is deliberately written without client names, product names or customer data. Milestone counts, test-suite counts and commit shares are taken from the repository; anything not measured is labelled as an estimate.</p>
+			</div>
+
+			<ul class="actions" data-a>
+				<li><a href="project_all.html" class="button">All projects</a></li>
+				<li><a href="index.html#contact" class="button primary">Get in touch</a></li>
+			</ul>
+		</div>
+	</section>
+
+	<footer id="footer">
+		<div class="inner">
+			<div class="footer-grid">
+				<ul class="menu">
+					<li>
+						<h3>Email</h3>
+						<a href="mailto:metinunlu97@gmail.com">metinunlu97@gmail.com</a>
+					</li>
+					<li>
+						<h3>Elsewhere</h3>
+						<ul class="icons">
+							<li><a href="https://github.com/MetinUnlu" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.linkedin.com/in/metinunlu/" class="icon brands fa-linkedin-in" target="_blank" rel="noopener"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</li>
+				</ul>
+				<span class="copyright">&copy; Metin Ünlü &mdash; All rights reserved</span>
+			</div>
+		</div>
+	</footer>
+
+	<script src="assets/js/site.js"></script>
+</body>
+</html>

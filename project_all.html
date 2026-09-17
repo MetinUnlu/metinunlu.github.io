@@ -1,185 +1,277 @@
-<!DOCTYPE HTML>
-<!--
-	Hyperspace by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
-<html>
-	<head>
-		<title>List of Projects</title>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
-	</head>
-	<body class="is-preload">
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Projects — Metin Ünlü</title>
+	<meta name="description" content="Professional AI systems and personal data science projects by Metin Ünlü — enterprise AI platforms, forecasting, retrieval-augmented assistants, document intelligence and machine learning research." />
+	<meta property="og:title" content="Projects — Metin Ünlü" />
+	<meta property="og:description" content="Professional AI systems and personal data science projects — platforms, forecasting, RAG assistants and ML research." />
+	<link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+	<link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
 
-		<!-- Header -->
-			<header id="header">
-				<a href="index.html" class="title">List of Project</a>
-				<nav>
-					<ul>
-						<li><a href="index.html">Home</a></li>
-						<li><a href="project_all.html" class="active">Projects</a></li>
-						<li><a href="index.html#two" >About Me</a></li>
-						<li><a href="index.html#three">Get in touch</a></li>
+	<header id="header">
+		<div class="inner">
+			<a href="index.html" class="brand">
+				<span class="mark"><i></i><i></i><i></i><i></i></span>
+				Metin Ünlü
+				<span class="sep"></span>
+				<span class="sub">AI &amp; Full-Stack Engineer</span>
+			</a>
+			<button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+			<nav>
+				<ul>
+					<li><a href="index.html#work">Work</a></li>
+					<li><a href="project_all.html" class="active">Projects</a></li>
+					<li><a href="cvpage.html">CV</a></li>
+					<li><a href="index.html#contact">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<section class="wrapper hero">
+		<div class="inner">
+			<div class="eyebrow" data-a>Index</div>
+			<h1 data-a>Projects</h1>
+			<p class="lead" data-a>Production systems delivered at Téchnéos, plus personal and academic work. Professional case studies are written <b>without client names, product names or customer data</b> — each page describes the engineering and labels which numbers are measured and which are estimates.</p>
+			<div class="bar4" data-a><i></i><i></i><i></i><i></i></div>
+		</div>
+	</section>
+
+	<section class="wrapper soft">
+		<div class="inner">
+
+			<div class="section-head">
+				<div class="eyebrow" data-a>Professional work</div>
+				<h2 data-a>Six systems, in production</h2>
+			</div>
+
+			<div class="cards">
+
+				<article class="card b" data-a>
+					<span class="tag">Platform architecture</span>
+					<h3><a href="ai-platform-kernel.html">Enterprise AI Application Kernel</a></h3>
+					<p>A reusable, self-hostable foundation for enterprise AI applications: identity, fine-grained authorization, AI gateway, governed tool execution, durable workflows, audit and observability. Nine milestones in ten weeks, with architectural invariants enforced in CI.</p>
+					<ul class="chip-row">
+						<li><span class="chip">NestJS</span></li>
+						<li><span class="chip">Next.js</span></li>
+						<li><span class="chip">Temporal</span></li>
+						<li><span class="chip">OpenFGA</span></li>
+						<li><span class="chip">MCP</span></li>
 					</ul>
-				</nav>
-			</header>
+					<a href="ai-platform-kernel.html" class="arrow-link">Read the case study</a>
+				</article>
 
-		<!-- Wrapper -->
-			<div id="wrapper">
+				<article class="card g" data-a>
+					<span class="tag">Applied ML · Process R&amp;D</span>
+					<h3><a href="ml-doe-platform.html">ML-Driven Design of Experiments</a></h3>
+					<p>Digital-twin and design-of-experiments platform for industrial process and formulation R&amp;D. Includes a distillation soft sensor reaching R² 0.81 with 90% prediction intervals that cover 94–97% of held-out measurements.</p>
+					<ul class="chip-row">
+						<li><span class="chip">Python</span></li>
+						<li><span class="chip">scikit-learn</span></li>
+						<li><span class="chip">FastAPI</span></li>
+						<li><span class="chip">Next.js</span></li>
+					</ul>
+					<a href="ml-doe-platform.html" class="arrow-link">Read the case study</a>
+				</article>
 
-				<!-- Main -->
-				<section id="one" class="wrapper style2 spotlights">
+				<article class="card y" data-a>
+					<span class="tag">Forecasting · Supply chain</span>
+					<h3><a href="demand-forecasting.html">Demand Forecasting &amp; Inventory Decisions</a></h3>
+					<p>Probabilistic demand forecasting with quantile regression, driving automated safety stock and restocking decisions under a target service level across 300+ SKUs. Four model families compared per series.</p>
+					<ul class="chip-row">
+						<li><span class="chip">PyTorch Forecasting</span></li>
+						<li><span class="chip">TFT</span></li>
+						<li><span class="chip">Chronos</span></li>
+						<li><span class="chip">React</span></li>
+					</ul>
+					<a href="demand-forecasting.html" class="arrow-link">Read the case study</a>
+				</article>
 
+				<article class="card r" data-a>
+					<span class="tag">LLM agents · Manufacturing quality</span>
+					<h3><a href="quality-assistant.html">On-Premise Quality Assistant</a></h3>
+					<p>Indexes a manufacturer's PFMEA and 8D quality documents, then searches, chats, cross-references and drafts from them — ~2,090 records, trilingual UI, running entirely inside the customer network on local models.</p>
+					<ul class="chip-row">
+						<li><span class="chip">Hybrid RAG</span></li>
+						<li><span class="chip">BGE-M3</span></li>
+						<li><span class="chip">Ollama</span></li>
+						<li><span class="chip">DuckDB</span></li>
+					</ul>
+					<a href="quality-assistant.html" class="arrow-link">Read the case study</a>
+				</article>
 
+				<article class="card p" data-a>
+					<span class="tag">Document AI</span>
+					<h3><a href="document-intelligence.html">Document Intelligence Platform</a></h3>
+					<p>Remote GPU-accelerated OCR plus schema-validated LLM extraction, turning dense technical documents into standardized datasets — with a visual schema editor and a multi-run evaluation benchmark.</p>
+					<ul class="chip-row">
+						<li><span class="chip">vLLM</span></li>
+						<li><span class="chip">Ollama</span></li>
+						<li><span class="chip">FastAPI</span></li>
+						<li><span class="chip">SSE</span></li>
+					</ul>
+					<a href="document-intelligence.html" class="arrow-link">Read the case study</a>
+				</article>
 
-					
-
-					<section>
-						<a href="markovchain_finance.html" class="image"><img src="images/markovchain_finance/markov_chain_finance.png" alt="" data-position="25% 25%" /></a>
-						<div class="content">
-							<div class="inner">
-								<h2>Markov Chain Financial Prediction System</h2>
-								<p>A comprehensive financial prediction system using Markov chains to model stock market transitions, calculate expected outcomes, and make trading decisions. The system analyzes technical indicators like moving averages and RSI to create state-based predictions for Google stock data spanning from 2004 to 2024.</p>
-								<ul class="actions">
-									<li><a href="markovchain_finance.html" class="button">Learn more</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-
-					<section>
-						<a href="music_recommendation.html" class="image"><img src="images/music_recommendation/music_recommendation.png" alt="" data-position="25% 25%" /></a>
-						<div class="content">
-							<div class="inner">
-								<h2>Advanced Music Recommendation System</h2>
-								<p>A comprehensive music recommendation system implementing both collaborative filtering and content-based approaches. Built for the Mining Massive Datasets course, this project processes over 3.6 million user interactions from the Million Song Dataset, employing advanced techniques including matrix factorization, implicit feedback modeling, and hybrid recommendation strategies.</p>
-								<ul class="actions">
-									<li><a href="music_recommendation.html" class="button">Learn more</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-
-					<section>
-						<a href="#" class="image"><img src="images/customer_churn/customer_churn.png" alt="" data-position="25% 25%" /></a>
-						<div class="content">
-							<div class="inner">
-								<h2>Customer Churn Prediction</h2>
-								<p>Predict customer churn (business metric) using ML. Analyzed usage, contracts & demographics to build a model (Python, Random Forest & Neural Networks) identifying at-risk customers for better retention strategies.</p>
-								<ul class="actions">
-									<li><a href="customerchurn.html" class="button">Learn more</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-
-
-					<section>
-						<a href="#" class="image"><img src="images/mangoleaf/Design.png" alt="" data-position="25% 25%" /></a>
-						<div class="content">
-							<div class="inner">
-								<h2> Image Classification: Mango Leaf Disease </h2>
-								<p>This project explores deep learning models to classify mango leaf diseases from images using a Kaggle dataset. Various models were investigated, including basic CNNs, EfficientNetB0, MobileNetV2, and finally Xception. Xception achieved the highest accuracy of 98.75% and was successfully saved for future use. Batch size optimization was crucial for Xception's training, as a larger size led to memory limitations.</p>
-								<ul class="actions">
-									<li><a href="mango.html" class="button">Learn more</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-
-					<section>
-						<a href="#" class="image"><img src="images/LLM_textrpg/LLM_textprg.png" alt="" data-position="25% 25%" /></a>
-						<div class="content">
-							<div class="inner">
-								<h2>CustomGPT LLM - TextRPG</h2>
-								<p>This project builds an AI Dungeon Master for RPGs. It leverages Mistral/Llama2 to create dynamic narratives based on your choices (combat, character creation). Explore how the code guides the AI for a more immersive experience.</p>
-								<ul class="actions">
-									<li><a href="customgpt.html" class="button">Learn more</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-
-					<section>
-						<a href="british_reviews.html" class="image"><img src="images/british/british_airways.png" alt="" data-position="center center" /></a>
-						<div class="content">
-							<div class="inner">
-								<h2>British Airways Sentiment Analysis</h2>
-								<p>This project involves a detailed sentiment analysis of British Airways customer reviews. By leveraging data extraction and predictive analytics, the project aims to unveil actionable insights on customer sentiment, which can be instrumental for enhancing service quality.</p>
-								<ul class="actions">
-									<li><a href="british_reviews.html" class="button">Learn more</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-
-					<section>
-						<a href="kpmg.html" class="image"><img src="images/kpmg/main_image.png" alt="" data-position="top center" /></a>
-						<div class="content">
-							<div class="inner">
-								<h2>Customer Segmentation Analysis for Targeted Marketing</h2>
-								<p>This project employs exploratory data analysis and K-Means Clustering on existing customer datasets to inform targeted marketing strategies for a Bicycle Company. By analyzing demographics, transactions, and customer behavior, we identify key customer segments that offer the highest revenue potential, guiding the company's marketing efforts for optimized engagement and profitability.</p>
-								<ul class="actions">
-									<li><a href="kpmg.html" class="button">Learn more</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-					
-					<section>
-						<a href="#" class="image"><img src="images/data-line/schematic_logo.png" alt="" data-position="25% 25%" /></a>
-						<div class="content">
-							<div class="inner">
-								<h2>Database Activity Control System </h2>
-								<p>Developed an intricate Data Analytics Workflow Automation System, designed to streamline the collection, updating, processing, and reporting of business intelligence data. This system is encapsulated by a robust architecture that ensures efficient handling of large datasets, periodic updates, and user-friendly report generation.</p>
-								<ul class="actions">
-									<li><a href="DSauto.html" class="button">Learn more</a></li>
-								</ul>
-							</div>
-						</div>
-					</section>
-					
-				</section>
+				<article class="card b" data-a>
+					<span class="tag">Finance operations</span>
+					<h3><a href="invoice-automation.html">AI Invoice Payment Approval</a></h3>
+					<p>Supplier invoices in, ISO 20022 payment file out: OCR, LLM extraction, master-data validation and a human supervision desk for everything uncertain. Crash-resumable workflows, full audit trail, no automatic money movement.</p>
+					<ul class="chip-row">
+						<li><span class="chip">NestJS</span></li>
+						<li><span class="chip">Temporal</span></li>
+						<li><span class="chip">Prisma</span></li>
+						<li><span class="chip">ISO 20022</span></li>
+					</ul>
+					<a href="invoice-automation.html" class="arrow-link">Read the case study</a>
+				</article>
 
 			</div>
 
-		<!-- Footer -->
-			<footer id="footer" class="wrapper alt">
-				<div class="inner">
-					<ul class="menu">
-						<li>
-							<h3>Email</h3>
-							<a href="metinunlu97@gmail.com">metinunlu97@gmail.com</a>
-						</li>
-						<li>
-							<h3>Phone</h3>
-							<span>+39 351 750 3392</span>
-						</li>
-						<li>
-							<h3>Social</h3>
-							<ul class="icons">
-								<!--<li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>-->
-								<li><a href="https://github.com/MetinUnlu" class="icon brands fa-github" target="_blank"><span class="label">GitHub</span></a></li>
-								<!--<li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>-->
-								<li><a href="https://www.linkedin.com/in/metinunlu/" class="icon brands fa-linkedin-in" target="_blank"><span class="label">LinkedIn</span></a></li>
-								<li><a href="https://www.facebook.com/MetinUnlu.knight/" class="icon brands fa-facebook-f" target="_blank"><span class="label">Facebook</span></a></li>
-							</ul>
-						</li>
+		</div>
+	</section>
+
+	<section class="wrapper">
+		<div class="inner">
+
+			<div class="section-head">
+				<div class="eyebrow g" data-a>Personal &amp; academic</div>
+				<h2 data-a>Research and side work</h2>
+				<p data-a>Work from my MSc in Data Science and personal research. Code for these is public on GitHub.</p>
+			</div>
+
+			<div class="cards">
+
+				<article class="card g" data-a>
+					<a href="markovchain_finance.html" class="image"><img src="images/markovchain_finance/markov_chain_finance.png" alt="Markov chain financial prediction" /></a>
+					<span class="tag">Quantitative finance</span>
+					<h3><a href="markovchain_finance.html">Markov Chain Financial Prediction</a></h3>
+					<p>Transition matrices built from EMA and RSI regimes over twenty years of equity data, with expected-value scoring and threshold-driven trading — benchmarked honestly against buy-and-hold, which outperformed it.</p>
+					<ul class="chip-row">
+						<li><span class="chip">Markov chains</span></li>
+						<li><span class="chip">Technical analysis</span></li>
 					</ul>
-				</div>
-			</footer>
+					<a href="markovchain_finance.html" class="arrow-link">Read more</a>
+				</article>
 
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/browser.min.js"></script>
-			<script src="assets/js/breakpoints.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
+				<article class="card y" data-a>
+					<a href="music_recommendation.html" class="image"><img src="images/music_recommendation/music_recommendation.png" alt="Music recommendation system" /></a>
+					<span class="tag">Recommender systems</span>
+					<h3><a href="music_recommendation.html">Music Recommendation at Scale</a></h3>
+					<p>Collaborative filtering and content-based recommendation over 3.6 million user interactions from the Million Song Dataset — matrix factorization, implicit feedback modelling and hybrid strategies.</p>
+					<ul class="chip-row">
+						<li><span class="chip">Matrix factorization</span></li>
+						<li><span class="chip">Implicit feedback</span></li>
+					</ul>
+					<a href="music_recommendation.html" class="arrow-link">Read more</a>
+				</article>
 
-	</body>
+				<article class="card r" data-a>
+					<a href="customerchurn.html" class="image"><img src="images/customer_churn/customer_churn.png" alt="Customer churn prediction" /></a>
+					<span class="tag">Predictive modelling</span>
+					<h3><a href="customerchurn.html">Customer Churn Prediction</a></h3>
+					<p>Predicting churn from usage, contract and demographic data with Random Forests and neural networks, identifying at-risk customers so retention effort goes where it changes the outcome.</p>
+					<ul class="chip-row">
+						<li><span class="chip">Random Forest</span></li>
+						<li><span class="chip">Neural networks</span></li>
+					</ul>
+					<a href="customerchurn.html" class="arrow-link">Read more</a>
+				</article>
+
+				<article class="card b" data-a>
+					<a href="mango.html" class="image"><img src="images/mangoleaf/Design.png" alt="Mango leaf disease classification" /></a>
+					<span class="tag">Computer vision</span>
+					<h3><a href="mango.html">Mango Leaf Disease Classification</a></h3>
+					<p>CNN baselines, EfficientNetB0, MobileNetV2 and Xception compared on leaf disease images; Xception reached 98.75% accuracy, with batch size the decisive constraint against GPU memory.</p>
+					<ul class="chip-row">
+						<li><span class="chip">Xception</span></li>
+						<li><span class="chip">Transfer learning</span></li>
+					</ul>
+					<a href="mango.html" class="arrow-link">Read more</a>
+				</article>
+
+				<article class="card p" data-a>
+					<a href="customgpt.html" class="image"><img src="images/LLM_textrpg/LLM_textprg.png" alt="LLM text RPG" /></a>
+					<span class="tag">LLM application</span>
+					<h3><a href="customgpt.html">CustomGPT LLM — Text RPG</a></h3>
+					<p>An AI dungeon master built on locally served Mistral and Llama 2 models. The interesting part is the scaffolding: how prompts and state carry combat, character creation and continuity between turns.</p>
+					<ul class="chip-row">
+						<li><span class="chip">Mistral</span></li>
+						<li><span class="chip">Llama 2</span></li>
+					</ul>
+					<a href="customgpt.html" class="arrow-link">Read more</a>
+				</article>
+
+				<article class="card g" data-a>
+					<a href="british_reviews.html" class="image"><img src="images/british/british_airways.png" alt="Airline review sentiment analysis" /></a>
+					<span class="tag">NLP · Forage programme</span>
+					<h3><a href="british_reviews.html">British Airways Sentiment Analysis</a></h3>
+					<p>Sentiment analysis of airline customer reviews, from web scraping through NLP to predictive modelling of flight satisfaction.</p>
+					<ul class="chip-row">
+						<li><span class="chip">Web scraping</span></li>
+						<li><span class="chip">Sentiment analysis</span></li>
+					</ul>
+					<a href="british_reviews.html" class="arrow-link">Read more</a>
+				</article>
+
+				<article class="card y" data-a>
+					<a href="kpmg.html" class="image"><img src="images/kpmg/main_image.png" alt="Customer segmentation analysis" /></a>
+					<span class="tag">Analytics · Forage programme</span>
+					<h3><a href="kpmg.html">Customer Segmentation for Targeted Marketing</a></h3>
+					<p>Exploratory data analysis and K-Means clustering over customer demographics, transactions and behaviour to find the segments with the highest revenue potential for a bicycle retailer.</p>
+					<ul class="chip-row">
+						<li><span class="chip">K-Means</span></li>
+						<li><span class="chip">RFM segmentation</span></li>
+					</ul>
+					<a href="kpmg.html" class="arrow-link">Read more</a>
+				</article>
+
+				<article class="card r" data-a>
+					<a href="DSauto.html" class="image"><img src="images/data-line/schematic_logo.png" alt="Database activity control system" /></a>
+					<span class="tag">Data engineering</span>
+					<h3><a href="DSauto.html">Database Activity Control System</a></h3>
+					<p>A workflow automation system for collecting, updating, processing and reporting business intelligence data, architected around large datasets, periodic updates and readable report generation.</p>
+					<ul class="chip-row">
+						<li><span class="chip">Automation</span></li>
+						<li><span class="chip">Reporting</span></li>
+					</ul>
+					<a href="DSauto.html" class="arrow-link">Read more</a>
+				</article>
+
+			</div>
+
+		</div>
+	</section>
+
+	<footer id="footer">
+		<div class="inner">
+			<div class="footer-grid">
+				<ul class="menu">
+					<li>
+						<h3>Email</h3>
+						<a href="mailto:metinunlu97@gmail.com">metinunlu97@gmail.com</a>
+					</li>
+					<li>
+						<h3>Elsewhere</h3>
+						<ul class="icons">
+							<li><a href="https://github.com/MetinUnlu" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.linkedin.com/in/metinunlu/" class="icon brands fa-linkedin-in" target="_blank" rel="noopener"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</li>
+				</ul>
+				<span class="copyright">© Metin Ünlü — All rights reserved</span>
+			</div>
+		</div>
+	</footer>
+
+	<script src="assets/js/site.js"></script>
+</body>
 </html>

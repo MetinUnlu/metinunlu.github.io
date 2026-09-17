@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>Demand Forecasting &amp; Inventory Decisions &mdash; Metin Ünlü</title>
+	<meta name="description" content="Probabilistic demand forecasting with quantile regression, driving automated safety stock and restocking decisions for production planning across 300+ SKUs." />
+	<meta property="og:title" content="Demand Forecasting &amp; Inventory Decisions &mdash; Metin Ünlü" />
+	<meta property="og:description" content="Probabilistic demand forecasting with quantile regression, driving automated safety stock and restocking decisions for production planning across 300+ SKUs." />
+	<link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+	<link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
+
+	<header id="header">
+		<div class="inner">
+			<a href="index.html" class="brand">
+				<span class="mark"><i></i><i></i><i></i><i></i></span>
+				Metin Ünlü
+				<span class="sep"></span>
+				<span class="sub">AI &amp; Full-Stack Engineer</span>
+			</a>
+			<button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+			<nav>
+				<ul>
+					<li><a href="index.html#work">Work</a></li>
+					<li><a href="project_all.html" class="active">Projects</a></li>
+					<li><a href="cvpage.html">CV</a></li>
+					<li><a href="index.html#contact">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<section class="wrapper hero">
+		<div class="inner">
+			<div class="eyebrow y" data-a>Probabilistic forecasting &middot; Supply chain client</div>
+			<h1 data-a>Demand Forecasting &amp; Inventory Decision Engine</h1>
+			<p class="lead" data-a>Most inventory planning still happens in a spreadsheet, using a single-number forecast and a safety stock rule of thumb. This platform replaces both: it forecasts demand <b>as a distribution</b>, then converts that distribution into concrete restocking and safety-stock decisions under a target service level.</p>
+			<div class="bar4" data-a><i></i><i></i><i></i><i></i></div>
+		</div>
+	</section>
+
+	<section class="wrapper soft">
+		<div class="inner">
+			<ul class="facts" data-a>
+				<li><span class="k">Role</span><span>Full stack &mdash; forecasting pipelines, backend, frontend and infrastructure.</span></li>
+				<li><span class="k">Context</span><span>Supply chain and production planning client. Deployed to production, replacing a manual spreadsheet process.</span></li>
+			</ul>
+
+			<ul class="metrics" data-a>
+				<li class="metric">
+					<span class="v">300+</span>
+					<span class="l">SKUs forecast in scheduled background runs</span>
+				</li>
+				<li class="metric">
+					<span class="v">~4 h / week</span>
+					<span class="l">of manual spreadsheet planning replaced</span>
+				</li>
+				<li class="metric">
+					<span class="v">4</span>
+					<span class="l">model families compared per series</span>
+				</li>
+				<li class="metric">
+					<span class="v">−1.5 GB</span>
+					<span class="l">backend image size, CPU-only build (logged)</span>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="wrapper">
+		<div class="inner">
+			<div class="prose">
+				<h2 data-a>The problem</h2>
+				<p data-a>A point forecast cannot answer the question planners actually ask. &ldquo;How much will we sell&rdquo; is less useful than &ldquo;how much do we need on hand so that we only run out 5% of the time, given this lead time&rdquo;. The second question requires the shape of the distribution, not its mean.</p>
+				<p data-a>Stockouts cost sales and customer trust; excess inventory ties up capital and warehouse space. The gap between those two failure modes is exactly where quantiles live.</p>
+				<h2 data-a>What I built</h2>
+				<h3 data-a>Forecasting</h3>
+				<ul data-a>
+					<li>A multi-model pipeline that fits and compares <b>Temporal Fusion Transformer</b>, <b>Chronos</b>, <b>LSTM</b> and <b>Holt-Winters</b> per series, so classical baselines stay in the running &mdash; on short or sparse series they frequently win.</li>
+					<li><b>Quantile regression</b> for uncertainty, producing a demand distribution rather than a single trajectory.</li>
+					<li>Decision logic that turns quantiles into lead-time-aware safety stock and restocking quantities under a configurable service level.</li>
+					<li>Forecast health monitoring, so a model that silently degrades is visible before planners act on it.</li>
+				</ul>
+				<h3 data-a>Application</h3>
+				<ul data-a>
+					<li>FastAPI backend with background worker management for long-running training and inference jobs.</li>
+					<li>React / TypeScript / Chakra UI frontend: interactive forecast charts, quantile tuning, decision scenario tables and health dashboards.</li>
+					<li>Docker Compose deployment with PostgreSQL, Traefik and a BI tool integration for reporting outside the app.</li>
+				</ul>
+				<h2 data-a>Outcome</h2>
+				<p data-a>Deployed to production for client operations. A weekly manual planning process estimated at four or more hours now runs unattended across more than 300 SKUs, and planners spend their time on exceptions and scenario comparison instead of spreadsheet maintenance.</p>
+				<p data-a>On the infrastructure side, switching the backend to CPU-only inference dependencies cut 1.5 GB from the Docker image &mdash; a measured reduction that materially improved deploy times on the client's hardware.</p>
+			</div>
+
+			<h2 data-a>Stack</h2>
+			<ul class="chip-row" data-a>
+				<li><span class="chip">Python</span></li>
+				<li><span class="chip">FastAPI</span></li>
+				<li><span class="chip">SQLModel</span></li>
+				<li><span class="chip">PostgreSQL</span></li>
+				<li><span class="chip">PyTorch</span></li>
+				<li><span class="chip">PyTorch Forecasting</span></li>
+				<li><span class="chip">Temporal Fusion Transformer</span></li>
+				<li><span class="chip">Chronos</span></li>
+				<li><span class="chip">LSTM</span></li>
+				<li><span class="chip">Holt-Winters</span></li>
+				<li><span class="chip">Quantile regression</span></li>
+				<li><span class="chip">React</span></li>
+				<li><span class="chip">TypeScript</span></li>
+				<li><span class="chip">Vite</span></li>
+				<li><span class="chip">Chakra UI</span></li>
+				<li><span class="chip">Docker Compose</span></li>
+				<li><span class="chip">Traefik</span></li>
+				<li><span class="chip">Metabase</span></li>
+			</ul>
+
+			<div class="rule-note" style="margin-top:38px" data-a>
+				<p><b>Note:</b> this case study is deliberately written without client names, product names or customer data. SKU counts and the image-size reduction are logged; the weekly time saving is the client's own estimate of the process it replaced.</p>
+			</div>
+
+			<ul class="actions" data-a>
+				<li><a href="project_all.html" class="button">All projects</a></li>
+				<li><a href="index.html#contact" class="button primary">Get in touch</a></li>
+			</ul>
+		</div>
+	</section>
+
+	<footer id="footer">
+		<div class="inner">
+			<div class="footer-grid">
+				<ul class="menu">
+					<li>
+						<h3>Email</h3>
+						<a href="mailto:metinunlu97@gmail.com">metinunlu97@gmail.com</a>
+					</li>
+					<li>
+						<h3>Elsewhere</h3>
+						<ul class="icons">
+							<li><a href="https://github.com/MetinUnlu" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.linkedin.com/in/metinunlu/" class="icon brands fa-linkedin-in" target="_blank" rel="noopener"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</li>
+				</ul>
+				<span class="copyright">&copy; Metin Ünlü &mdash; All rights reserved</span>
+			</div>
+		</div>
+	</footer>
+
+	<script src="assets/js/site.js"></script>
+</body>
+</html>

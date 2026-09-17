@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<title>On-Premise Manufacturing Quality Assistant &mdash; Metin Ünlü</title>
+	<meta name="description" content="An on-premise AI assistant for manufacturing quality engineering: indexes PFMEA and 8D documents and lets engineers search, chat, cross-reference and draft new PFMEAs from them." />
+	<meta property="og:title" content="On-Premise Manufacturing Quality Assistant &mdash; Metin Ünlü" />
+	<meta property="og:description" content="An on-premise AI assistant for manufacturing quality engineering: indexes PFMEA and 8D documents and lets engineers search, chat, cross-reference and draft new PFMEAs from them." />
+	<link rel="icon" href="images/favicon.svg" type="image/svg+xml" />
+	<link rel="preconnect" href="https://fonts.googleapis.com" />
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+	<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+	<link rel="stylesheet" href="assets/css/fontawesome-all.min.css" />
+	<link rel="stylesheet" href="assets/css/site.css" />
+</head>
+<body>
+
+	<header id="header">
+		<div class="inner">
+			<a href="index.html" class="brand">
+				<span class="mark"><i></i><i></i><i></i><i></i></span>
+				Metin Ünlü
+				<span class="sep"></span>
+				<span class="sub">AI &amp; Full-Stack Engineer</span>
+			</a>
+			<button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
+			<nav>
+				<ul>
+					<li><a href="index.html#work">Work</a></li>
+					<li><a href="project_all.html" class="active">Projects</a></li>
+					<li><a href="cvpage.html">CV</a></li>
+					<li><a href="index.html#contact">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+	</header>
+
+	<section class="wrapper hero">
+		<div class="inner">
+			<div class="eyebrow r" data-a>LLM agents &amp; retrieval &middot; Manufacturing client</div>
+			<h1 data-a>On-Premise Manufacturing Quality Assistant</h1>
+			<p class="lead" data-a>Quality engineers hold two bodies of knowledge that should talk to each other but do not: <b>PFMEA</b> documents describing what could fail and how it is controlled, and <b>8D</b> reports describing what actually failed. Reconciling them means reading scattered XML, Excel and PDF files by hand. This system makes that corpus searchable, and automatically judges whether a failure mode from an 8D report is already covered by the PFMEA.</p>
+			<div class="bar4" data-a><i></i><i></i><i></i><i></i></div>
+		</div>
+	</section>
+
+	<section class="wrapper soft">
+		<div class="inner">
+			<ul class="facts" data-a>
+				<li><span class="k">Role</span><span>Full stack &mdash; roughly half of 213 commits. Built the entire quality engine and its API, the frontend components, and the deployment and migration infrastructure.</span></li>
+				<li><span class="k">Context</span><span>Multi-site European manufacturer. Runs entirely inside the customer network; no document ever leaves it.</span></li>
+			</ul>
+
+			<ul class="metrics" data-a>
+				<li class="metric">
+					<span class="v">~2,090</span>
+					<span class="l">quality records indexed and queryable</span>
+				</li>
+				<li class="metric">
+					<span class="v">3</span>
+					<span class="l">interface languages (EN / IT / DE)</span>
+				</li>
+				<li class="metric">
+					<span class="v">0</span>
+					<span class="l">documents leaving the customer network</span>
+				</li>
+				<li class="metric">
+					<span class="v">~50%</span>
+					<span class="l">of 213 repository commits mine</span>
+				</li>
+			</ul>
+		</div>
+	</section>
+
+	<section class="wrapper">
+		<div class="inner">
+			<div class="prose">
+				<h2 data-a>The problem</h2>
+				<p data-a>An 8D report lands describing a failure in the field. The question is immediate and unglamorous: did our PFMEA anticipate this? If yes, the control failed and the control needs revisiting. If no, the analysis has a gap.</p>
+				<p data-a>Answering it manually means cross-checking a failure description against hundreds of PFMEA rows spread across file formats and sites &mdash; hours per report, and the quality of the answer depends on who is looking.</p>
+				<h2 data-a>What I built</h2>
+				<h3 data-a>Retrieval engine</h3>
+				<ul data-a>
+					<li><b>Hybrid search</b> combining BM25 lexical matching with dense BGE-M3 embeddings, fused by reciprocal rank fusion and refined by a cross-encoder reranker. Quality documents are full of part numbers and process codes, where pure semantic search quietly fails.</li>
+					<li>An indexer that parses the client's XML and Excel quality formats into a consistent record model, with a header-extraction agent for the inconsistent metadata blocks at the top of real-world documents.</li>
+					<li>A <b>DuckDB query engine</b> over the structured side of the corpus, so questions that are really aggregations get answered by SQL instead of by a language model guessing.</li>
+				</ul>
+				<h3 data-a>Agent layer</h3>
+				<ul data-a>
+					<li>A tool-calling agent loop with a supervisor and an evaluator stage, so answers are checked before they reach the engineer rather than streamed out unconditionally.</li>
+					<li>The <b>8D &harr; PFMEA cross-reference</b>: given a failure report, retrieve candidate PFMEA rows and judge coverage explicitly, with the supporting rows cited.</li>
+					<li>A row recommender that suggests PFMEA entries when drafting a new analysis, grounded in what the company has already documented.</li>
+					<li>Server-sent-event streaming throughout, so long answers appear as they are produced.</li>
+				</ul>
+				<h3 data-a>Frontend and deployment</h3>
+				<ul data-a>
+					<li>React / TypeScript interface: search, chat, cross-reference, document browser, draft editor, XML and Excel viewers, index diagnostics and settings.</li>
+					<li>Trilingual UI (English, Italian, German) via i18next, matching the client's site distribution.</li>
+					<li>Docker Compose deployment behind Traefik, Alembic migrations and CI workflows &mdash; all on customer hardware, with Ollama serving open-weight models locally.</li>
+				</ul>
+				<h2 data-a>Outcome</h2>
+				<p data-a>About 2,090 quality records are indexed and queryable in natural language, with coverage judgements produced automatically instead of by manual cross-checking.</p>
+				<p data-a>The architectural constraint that shaped everything: confidential customer quality data cannot leave the network. Local model serving and on-premise deployment were not a preference here &mdash; they were the condition for the project existing.</p>
+				<p data-a><i>Estimate, not a logged metric:</i> hours of document cross-checking per 8D report reduced to a single automated job.</p>
+			</div>
+
+			<h2 data-a>Stack</h2>
+			<ul class="chip-row" data-a>
+				<li><span class="chip">Python</span></li>
+				<li><span class="chip">FastAPI</span></li>
+				<li><span class="chip">SQLModel</span></li>
+				<li><span class="chip">PostgreSQL</span></li>
+				<li><span class="chip">ChromaDB</span></li>
+				<li><span class="chip">DuckDB</span></li>
+				<li><span class="chip">Ollama</span></li>
+				<li><span class="chip">BGE-M3 embeddings</span></li>
+				<li><span class="chip">Cross-encoder reranker</span></li>
+				<li><span class="chip">BM25 / RRF</span></li>
+				<li><span class="chip">Agentic tool calling</span></li>
+				<li><span class="chip">SSE streaming</span></li>
+				<li><span class="chip">React</span></li>
+				<li><span class="chip">TypeScript</span></li>
+				<li><span class="chip">Vite</span></li>
+				<li><span class="chip">Chakra UI</span></li>
+				<li><span class="chip">TanStack Router</span></li>
+				<li><span class="chip">i18next</span></li>
+				<li><span class="chip">Docker Compose</span></li>
+				<li><span class="chip">Traefik</span></li>
+				<li><span class="chip">Alembic</span></li>
+			</ul>
+
+			<div class="rule-note" style="margin-top:38px" data-a>
+				<p><b>Note:</b> this case study is deliberately written without client names, product names or customer data. Record counts and commit shares come from the repository; the time saving is an engineering estimate.</p>
+			</div>
+
+			<ul class="actions" data-a>
+				<li><a href="project_all.html" class="button">All projects</a></li>
+				<li><a href="index.html#contact" class="button primary">Get in touch</a></li>
+			</ul>
+		</div>
+	</section>
+
+	<footer id="footer">
+		<div class="inner">
+			<div class="footer-grid">
+				<ul class="menu">
+					<li>
+						<h3>Email</h3>
+						<a href="mailto:metinunlu97@gmail.com">metinunlu97@gmail.com</a>
+					</li>
+					<li>
+						<h3>Elsewhere</h3>
+						<ul class="icons">
+							<li><a href="https://github.com/MetinUnlu" class="icon brands fa-github" target="_blank" rel="noopener"><span class="label">GitHub</span></a></li>
+							<li><a href="https://www.linkedin.com/in/metinunlu/" class="icon brands fa-linkedin-in" target="_blank" rel="noopener"><span class="label">LinkedIn</span></a></li>
+						</ul>
+					</li>
+				</ul>
+				<span class="copyright">&copy; Metin Ünlü &mdash; All rights reserved</span>
+			</div>
+		</div>
+	</footer>
+
+	<script src="assets/js/site.js"></script>
+</body>
+</html>
